@@ -1,0 +1,50 @@
+State;Mortality;Latitude;Longitude;Population ;Ocean 
+Alabama;219;33;87;3.5;1
+Arizona;160;34.5;112;1.6;0
+Arkansas;170;35;92.5;2;0
+California;182;37.5;119.5;18.6;1
+Colorado;149;39;105.5;2;0
+Connecticut;159;41.8;72.8;2.8;1
+Delaware;200;39;75.5;0.5;1
+Washington, DC;177;39;77;0.8;0
+Florida;197;28;82;5.8;1
+Georgia;214;33;83.5;4.4;1
+Idaho;116;44.5;114;0.7;0
+Illinois;124;40;89.5;10.6;0
+Indiana;128;40.2;86.2;4.9;0
+Iowa;128;42.2;93.8;2.8;0
+Kansas;166;38.5;98.5;2.2;0
+Kentucky;147;37.8;85;3.2;0
+Louisiana;190;31.2;91.8;3.5;1
+Maine;117;45.2;69;1;1
+Maryland;162;39;76.5;3.5;1
+Massachusetts;143;42.2;71.8;5.4;1
+Michigan;117;43.5;84.5;8.2;0
+Minnesota;116;46;94.5;3.6;0
+Mississippi;207;32.8;90;2.3;1
+Missouri;131;38.5;92;4.5;0
+Montana;109;47;110.5;0.7;0
+Nebraska;122;41.5;99.5;1.5;0
+Nevada;191;39;117;0.4;0
+New Hampshire;129;43.8;71.5;0.7;1
+New Jersey;159;40.2;74.5;6.8;1
+New Mexico;141;35;106;1;0
+New York;152;43;75.5;18.1;1
+North Carolina;199;35.5;79.5;4.9;1
+North Dakota;115;47.5;100.5;0.7;0
+Ohio;131;40.2;82.8;10.2;0
+Oklahoma;182;35.5;97.2;2.5;0
+Oregon;136;44;120.5;1.9;1
+Pennsylvania;132;40.8;77.8;11.5;0
+Rhode Island;137;41.8;71.5;0.9;1
+South Carolina;178;33.8;81;2.5;1
+South Dakota;86;44.8;100;0.7;0
+Tennessee;186;36;86.2;3.8;0
+Texas;229;31.5;98;10.6;1
+Utah;142;39.5;111.5;1;0
+Vermont;153;44;72.5;0.4;1
+Virginia;166;37.5;78.5;4.5;1
+Washington;117;47.5;121;3;1
+West Viginia;136;38.8;80.8;1.8;0
+Wisconsin;110;44.5;90.2;4.1;0
+Wyoming;134;43;107.5;0.3;0

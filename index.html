@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Regresión lineal</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Regresión lineal">
+  <meta name="author" content="Carlos Neftaly Lozano A.">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/db.jpg">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Regresión lineal</h1>
+    <h2>Curso Análisis de datos experimentales con R</h2>
+    <p>Carlos Neftaly Lozano A.<br/>www.microbiostats.com</p>
+  </hgroup>
+  <article></article>  
+  <footer class = 'license'>
+    <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>
+    <img width = '80px' src = 'http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png'>
+    </a>
+  </footer>
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introducción</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Técnica que permite estimar, proyectar o describir el comportamiento de una variable <em>dependiente cuantitativa</em> en función de otras independientes, <em>generalmente también cuantitativas</em>, que se presume inciden o modifican el comportamiento de esta. Y puede ser modelada como una línea recta. </p>
+
+<p><span style="display:block; height: 0.8 cm;"></span></p>
+
+<p>\[ y = \beta_o + \beta_1  + \epsilon \]</p>
+
+<p><span style="display:block; height: 1.5 cm;"></span></p>
+
+<p><img src="assets/img/rg.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="700px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>¿Para qué usarla?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 1 cm;"></span></p>
+
+<p>Hay tres usos principales en ciencias biológicas: </p>
+
+<ul>
+<li> Probar hipótesis de relaciones causa y efecto. </li>
+<li> Probar hipótesis de asociación entre las variables, pero, sin inferir necesariamente relación causa - efecto.</li>
+<li>Predecir: Estimar el valor de una variable correspondiente a un valor particular de la otra. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Modelo de regresión</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Se denomina modelo de regresión, a la ecuación que describe cómo <em>y</em> está relacionada con <em>x</em> y el término de error.</p>
+
+<p>\[\underbrace{y}_{\text{VD}}=\underbrace{\beta_o + \beta_1x}_{\text{Componente lineal}} + \underbrace{\epsilon}_{Error aleatorio}\]</p>
+
+<ul>
+<li><p>\(\beta_0\) y \(\beta_1\) son llamados parámetros del modelo.</p></li>
+<li><p>\(\epsilon\) término de error.   </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Modelo de regresión</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 1.5 cm;"></span></p>
+
+<p><img src="assets/img/g4.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="700px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Modelo de regresión</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 1 cm;"></span></p>
+
+<p>\[\widehat{y}=\widehat{\beta}_o + \widehat{\beta}_1x + \epsilon\]</p>
+
+<h3>Interpretación</h3>
+
+<ul>
+<li> \(\widehat{\beta}_1\): Cuánto se espera que cambie la variable dependiente (respuesta) por unidad de cambio en Xi.</li>
+<li>\(\widehat{\beta}_o\): Intercepto con y. </li>
+<li>\({\widehat{y}}\): es el valor estimado de y dado un valor de x.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Explicando las variaciones....</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 0.5 cm;"></span></p>
+
+<p>\[\underbrace{SST}_{\sum{(y-\bar{y})^2}}=\underbrace{SSR}_{\sum{(\widehat{y}-\bar{y})^2}}+ \underbrace{SSE}_{\sum{(y-\widehat{y})^2}}\]</p>
+
+<p><img src="assets/img/g6.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="800px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Coeficiente de determinación \(R^2\)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 1.5 cm;"></span></p>
+
+<p>El Coeficiente de determinación (\(R^2\)) es la proporción de la variación total en la variable dependiente, que es explicada por la variación la variable independiente. </p>
+
+<p>\[R^2=\frac{SSR}{SST}\]</p>
+
+<p>Donde, </p>
+
+<p>\[0 \leq R^2 \leq 1\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Coeficiente de correlación</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><span style="display:block; height: 0.5 cm;"></span></p>
+
+<p>\[r=(\text{signo de} \beta_1) \sqrt{R^2}\]</p>
+
+<p>Donde, </p>
+
+<p>\[-1 \leq r \leq 1\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Supuestos</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>El error (\(\epsilon\)) es una variable aleatoria con media cero.</li>
+<li>La varianza de \(\epsilon\), \(\sigma^2\), es la misma para todos los valores de x.</li>
+<li>Los valores de  \(\epsilon\) son independientes. </li>
+<li>El error \(\epsilon\) está normalmente distribuido. </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Supuestos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/s1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="800px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Supuestos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/s2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="800px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Supuestos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/s3.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="800px" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Inferencia basadas en \(\beta_1\)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Para poner a prueba la significancia de la relación entre <em>x</em> y <em>y</em>, 
+sometemos a evaluación la hipótesis nula \(\beta_1=0\).</p>
+
+<h3>Hipótesis</h3>
+
+<p>\[H_0: \beta_1=0\] </p>
+
+<p>\[H_a: \beta_1 \neq 0\]</p>
+
+<p>Comúnmente se usa:</p>
+
+<ul>
+<li><p>Intervalos de confianza</p></li>
+<li><p>Valores P</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Veamos un ejemplo.. Ajuste del modelo de regresión</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">modelo&lt;-lm(eruptions ~ waiting, data=faithful)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Veamos un ejemplo.. Ajuste del modelo de regresión</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">summary(modelo)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = eruptions ~ waiting, data = faithful)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.29917 -0.37689  0.03508  0.34909  1.19329 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.874016   0.160143  -11.70   &lt;2e-16 ***
+## waiting      0.075628   0.002219   34.09   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4965 on 270 degrees of freedom
+## Multiple R-squared:  0.8115, Adjusted R-squared:  0.8108 
+## F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Gráficamos</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot( waiting,eruptions,
+xlab=&#39;Waiting&#39;,ylab=&#39;Eruptions&#39;,col=&#39;blue&#39;,pch=1)
+abline(modelo,col=&#39;red&#39;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Validación</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Normalidad</h3>
+
+<pre><code class="r">shapiro.test(modelo$residuals)
+</code></pre>
+
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  modelo$residuals
+## W = 0.99278, p-value = 0.2106
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Validación</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Homocedasticidad</h3>
+
+<pre><code class="r">hmctest(modelo)
+</code></pre>
+
+<pre><code>## 
+##  Harrison-McCabe test
+## 
+## data:  modelo
+## HMC = 0.53377, p-value = 0.767
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Validación</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Independencia</h3>
+
+<pre><code class="r">dwtest(eruptions~waiting)
+</code></pre>
+
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  eruptions ~ waiting
+## DW = 2.561, p-value = 1
+## alternative hypothesis: true autocorrelation is greater than 0
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introducción'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='¿Para qué usarla?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Modelo de regresión'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Modelo de regresión'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Modelo de regresión'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Explicando las variaciones....'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Coeficiente de determinación \(R^2\)'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Coeficiente de correlación'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Supuestos'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Supuestos'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Supuestos'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Supuestos'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Inferencia basadas en \(\beta_1\)'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Veamos un ejemplo.. Ajuste del modelo de regresión'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Veamos un ejemplo.. Ajuste del modelo de regresión'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Gráficamos'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Validación'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Validación'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Validación'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='NA'>
+         20
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
